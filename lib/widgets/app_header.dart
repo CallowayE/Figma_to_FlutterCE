@@ -11,15 +11,28 @@ class AppHeader extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    final colorScheme = Theme.of(context).colorScheme;
+
     return AppBar(
-      title: Row(
+      centerTitle: true,
+      title: Stack(
+        alignment: Alignment.center,
         children: [
-          // VERIFY HEADER ICON RENDERING
-          SvgPicture.asset(
-            'assets/icons/home/YOUR_HEADER_ICON.svg',
-            width: 48,
-            height: 48,
+          Transform.translate(
+            offset: const Offset(-100, 0),
+            child: SvgPicture.asset(
+              'assets/icons/home/jack_o_lantern.svg',
+              width: 48,
+              height: 48,
+              fit: BoxFit.contain,
+              colorFilter: ColorFilter.mode(
+                colorScheme.onSurface,
+                BlendMode.srcIn
+              ),
+            ),
           ),
+          
           const SizedBox(width: 8),
           Text(title),
         ],
